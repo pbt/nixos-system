@@ -11,6 +11,10 @@
 }:
 
 {
+  # monitor control
+  hardware.i2c.enable = true;
+  services.ddccontrol.enable = true;
+  boot.kernelModules = [ "i2c-dev" ];
 
   # can't find any other way to apply regulatory domain to us
   systemd.services.regdom-us = {
@@ -33,7 +37,7 @@
   hardware.graphics.enable32Bit = true;
   hardware.amdgpu.opencl.enable = true;
 
- system.autoUpgrade = {
+  system.autoUpgrade = {
     enable = true;
     flake = "/home/pb/@r/src.pompom.sh/pb/nixos-system/#asphodel";
     flags = [
@@ -43,7 +47,6 @@
     dates = "02:00";
     randomizedDelaySec = "45min";
   };
-
 
   # kde connect
   programs.kdeconnect.enable = true;

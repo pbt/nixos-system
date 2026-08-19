@@ -55,10 +55,6 @@
 
   }; # udev
 
-  # monitor control
-  hardware.i2c.enable = true;
-  services.ddccontrol.enable = true;
-  boot.kernelModules = [ "i2c-dev" ];
 
   # gaming
   programs.steam.enable = true;
