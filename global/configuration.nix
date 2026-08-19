@@ -101,6 +101,19 @@
   programs.niri.enable = true;
 
   # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot = {
+    plymouth = {
+      enable = true;
+    };
+
+    consoleLogLevel = 3;
+    initrd.verbose = false;
+    kernelParams = [
+      "quiet"
+      "rd.udev.log_level=3"
+      "rd.systemd.show_status=auto"
+    ];
+  };
 
   nix.optimise.automatic = true;
 
