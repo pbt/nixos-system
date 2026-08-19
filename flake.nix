@@ -24,7 +24,7 @@
     }:
     {
       nixosConfigurations = {
-        shumai = nixpkgs.lib.nixosSystem {
+        ianthe = nixpkgs.lib.nixosSystem {
           specialArgs =
             let
               system = "x86_64-linux";
@@ -41,6 +41,10 @@
               boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
             })
             ./global/configuration.nix
+            ./global/apps/firefox.nix
+            ./global/system-packages.nix
+            ./computers/ianthe/hardware.nix
+            ./computers/ianthe/configuration.nix
           ];
         };
         asphodel = nixpkgs.lib.nixosSystem {
