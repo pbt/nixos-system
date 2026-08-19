@@ -20,7 +20,7 @@
     "https://cache.nixos.org/"
   ];
 
-  nix.settings.trusted-users = ["pb"];
+  nix.settings.trusted-users = [ "pb" ];
 
   nix.settings.trusted-public-keys = [
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
@@ -54,7 +54,6 @@
     ]; # packages
 
   }; # udev
-
 
   # gaming
   programs.steam.enable = true;
@@ -257,12 +256,7 @@
     enable = true;
   };
 
-  security.pam.services.polkit-1.fprintAuth = true;
   services.gnome.gnome-keyring.enable = true;
-  systemd.services.fprintd = {
-    wantedBy = [ "multi-user.target" ];
-    serviceConfig.Type = "simple";
-  };
 
   # pb: power mgmt
   services.power-profiles-daemon.enable = true;
@@ -518,6 +512,7 @@
 
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
+  hardware.enableAllFirmware = true;
 
   nixpkgs.config.permittedInsecurePackages = [
     "olm-3.2.16"
