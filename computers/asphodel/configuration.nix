@@ -11,6 +11,10 @@
 }:
 
 {
+  # autologin
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "pb";
+  
   # monitor control
   hardware.i2c.enable = true;
   services.ddccontrol.enable = true;

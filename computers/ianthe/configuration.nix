@@ -8,6 +8,11 @@
 
   services.fwupd.enable = true;
 
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+  };
+
   system.autoUpgrade = {
     enable = true;
     flake = "/home/pb/@r/src.pompom.sh/pb/nixos-system/#ianthe";
