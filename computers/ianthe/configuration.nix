@@ -5,6 +5,9 @@
 { config, pkgs, ... }:
 
 {
+
+  services.fwupd.enable = true;
+
   system.autoUpgrade = {
     enable = true;
     flake = "/home/pb/@r/src.pompom.sh/pb/nixos-system/#ianthe";
