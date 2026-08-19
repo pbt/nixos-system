@@ -5,8 +5,6 @@
 { config, pkgs, ... }:
 
 {
-  nix.settings.experimental-features = ["nix-command" "flakes"];
-  
   system.autoUpgrade = {
     enable = true;
     flake = "/home/pb/@r/src.pompom.sh/pb/nixos-system/#ianthe";
@@ -20,12 +18,12 @@
 
   services.thermald.enable = true;
 
-
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  boot.initrd.luks.devices."luks-3b772f40-31d9-4855-bebf-5509c054d2cc".device = "/dev/disk/by-uuid/3b772f40-31d9-4855-bebf-5509c054d2cc";
+  boot.initrd.luks.devices."luks-3b772f40-31d9-4855-bebf-5509c054d2cc".device =
+    "/dev/disk/by-uuid/3b772f40-31d9-4855-bebf-5509c054d2cc";
   networking.hostName = "ianthe"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 

@@ -154,16 +154,8 @@
   services.blueman.enable = true;
   hardware.xpadneo.enable = true; # Enable the xpadneo driver for Xbox One wireless controllers
 
-  # amd gpu
-  boot.initrd.kernelModules = [ "amdgpu" ];
-  hardware.amdgpu.overdrive.enable = true;
-  hardware.firmware = [
-    pkgs.linux-firmware
-    pkgs.wireless-regdb
-  ];
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-  hardware.amdgpu.opencl.enable = true;
   # nixpkgs.config.rocmSupport = true;
 
   # hardware.opengl.extraPackages = with pkgs; [
@@ -267,6 +259,12 @@
     enable = true;
   };
 
+  security.pam.services.polkit-1.fprintAuth = true;
+  services.gnome.gnome-keyring.enable = true;
+  systemd.services.fprintd = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "simple";
+  };
 
   # pb: power mgmt
   services.power-profiles-daemon.enable = true;
@@ -405,7 +403,6 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # wifi
-  services.gnome.gnome-keyring.enable = true;
   # networking.wireless.iwd.enable = true;
   # networking.wireless.iwd.settings = {
   #   Network = {
