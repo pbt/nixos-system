@@ -119,7 +119,7 @@
     btop-rocm
     rocmPackages.rocm-smi
     openrgb-with-all-plugins
-  ]);
+  ];
 
   # rocm
   systemd.tmpfiles.rules =

@@ -279,7 +279,6 @@
   };
 
   # pb: power mgmt
-  services.thermald.enable = true;
   services.power-profiles-daemon.enable = true;
   #   services.tlp = {
   #       enable = true;
