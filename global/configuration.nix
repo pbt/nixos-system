@@ -25,12 +25,6 @@
     "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
   ];
 
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-    ./firefox.nix
-  ];
-
   fileSystems = {
     "/".options = [ "compress=zstd" ];
     "/home".options = [ "compress=zstd" ];
@@ -317,29 +311,12 @@
     };
   };
 
-  # can't find any other way to apply regulatory domain to us
-  systemd.services.regdom-us = {
-    path = [ pkgs.iw ];
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" ];
-    script = ''
-      iw reg set US
-    '';
-  };
-
   systemd.services.flatpak-update = {
     path = [ pkgs.flatpak ];
     script = ''
       flatpak update -y
     '';
   };
-
-  # services.emacs = {
-  #   enable = true;
-  #   package = pkgs.emacs-gtk; # replace with emacs-gtk, or a version provided by the community overlay if desired.
-  # };
-
-  services.shairport-sync.enable = true;
 
   systemd.user.services.mpris-proxy = {
     enable = true;
@@ -351,28 +328,6 @@
     wantedBy = [ "default.target" ];
     serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
   };
-
-  #   systemd.user.services.kio-fuse = {
-  #     enable = true;
-  #     description = "Fuse interface for KIO";
-  #     wantedBy = ["graphical-session.target"];
-  #
-  #     serviceConfig = {
-  #       ExecStart = "${pkgs.kio-fuse}/libexec/kio-fuse -f";
-  #       BusName = "org.kde.KIOFuse";
-  #       Slice = "background.slice";
-  #     };
-  #   };
-
-  # pb: 1password (https://wiki.nixos.org/wiki/1Password)
-  # Enable the unfree 1Password packages
-  # nixpkgs.config.allowUnfreePredicate =
-  #   pkg:
-  #   builtins.elem (lib.getName pkg) [
-  #     "1password-cli"
-  #     "1password-gui"
-  #     "1password"
-  #   ];
 
   programs._1password.enable = true;
   programs._1password.package = pkgs-stable._1password-cli;
@@ -455,20 +410,6 @@
 
   systemd.services.syncthing.environment.STNODEFAULTFOLDER = "true";
 
-  # Bootloader.
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-  boot.initrd.luks.devices."luks-841e7165-c5f2-480c-a938-bcaa36cb817c".device =
-    "/dev/disk/by-uuid/841e7165-c5f2-480c-a938-bcaa36cb817c";
-  networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
-  hardware.wirelessRegulatoryDatabase = true;
-
-  boot.extraModprobeConfig = ''
-    options rtw89_pci disable_aspm_l1=y disable_aspm_l1ss=y
-    options rtw89_core disable_ps_mode=y
-  '';
-
   # Networking
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -523,17 +464,9 @@
   services.displayManager.gdm.enable = true;
   services.desktopManager.gnome.enable = true;
 
-  # Enable KDE Plasma and SDDM
-  # services.displayManager.sddm = {
-  #  enable = true;
-  #  wayland.enable = true;
-  #  settings.General.DisplayServer = "wayland";
-  #  theme = "catppuccin-mocha-green";
-  #};
   services.displayManager.defaultSession = "niri";
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "pb";
-  # services.desktopManager.plasma6.enable = true;
 
   programs.dconf.profiles.user = {
     databases = [
@@ -603,81 +536,6 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  services.lact.enable = true;
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    pkgsRocm.ffmpeg-full
-    lact
-    openrgb-with-all-plugins
-    alacritty
-    niri
-    ddcutil
-    fzf
-    jdk
-    iw
-    btop-rocm
-    wiremix
-    playerctl
-    sptlrx
-    fum
-    bluetui
-    wl-clipboard
-    (pkgs.catppuccin-sddm.override {
-      flavor = "mocha";
-      accent = "green";
-    })
-    rocmPackages.rocm-smi
-    xwayland-satellite
-    noctalia-shell
-    quickshell
-    swayidle
-    swaylock
-    starship
-    qpwgraph
-    bluez
-    bankstown-lv2
-    cachix
-    chezmoi
-    curl
-    emacs-gtk
-    emmet-language-server
-    fd
-    fastfetch
-    firefoxpwa
-    fossil
-    helix
-    kdePackages.karousel
-    kdePackages.kaccounts-integration
-    kdePackages.kaccounts-providers
-    kdePackages.kio-gdrive
-    kdePackages.signond
-    kdePackages.kio-fuse
-    libreoffice-qt6-fresh
-    marksman
-    mpls
-    nil
-    nixfmt
-    openssl
-    pandoc
-    python3
-    rclone
-    ripgrep
-    rustup
-    uv
-    shellcheck
-    tldr
-    typescript-language-server
-    vim
-    vscode-langservers-extracted
-    wget
-    wezterm
-    ueberzug
-    yazi
-    zsh
-    zoxide
-  ];
-
   nixpkgs.config.permittedInsecurePackages = [
     "olm-3.2.16"
   ];
@@ -706,24 +564,6 @@
     # enableSSHSupport = true;
   };
 
-  # rocm
-  systemd.tmpfiles.rules =
-    let
-      rocmEnv = pkgs.symlinkJoin {
-        name = "rocm-combined";
-        paths = with pkgs.rocmPackages; [
-          rocblas
-          hipblas
-          clr
-        ];
-      };
-    in
-    [
-      "L+    /opt/rocm   -    -    -     -    ${rocmEnv}"
-    ];
-
-  # List services that you want to enable:
-
   # Enable the OpenSSH daemon.
   services.openssh = {
     enable = true;
@@ -738,19 +578,4 @@
       PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
     };
   };
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
-
-  # This value determines the NixOS release from which the default
-  # settings for stateful data, like file locations and database versions
-  # on your system were taken. It‘s perfectly fine and recommended to leave
-  # this value at the release version of the first install of this system.
-  # Before changing this value read the documentation for this option
-  # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "24.05"; # Did you read the comment?
-
 }

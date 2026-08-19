@@ -1,6 +1,6 @@
-# /etc/nixos/flake.nix
+#ge /etc/nixos/flake.nix
 {
-  description = "flake for mooncake";
+  description = "flake for pb computers";
 
   inputs = {
 
@@ -39,10 +39,8 @@
             ({ pkgs, ... }: {
               nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
               boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
-              # # testing for wifi issues
-              # boot.kernelPackages = pkgs.linuxPackages_latest;
             })
-           ./configuration.shumai.nix
+            ./global/configuration.nix
           ];
         };
         asphodel = nixpkgs.lib.nixosSystem {
@@ -60,10 +58,12 @@
             ({ pkgs, ... }: {
               nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
               boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
-              # # testing for wifi issues
-              # boot.kernelPackages = pkgs.linuxPackages_latest;
             })
-           ./configuration.nix
+            ./global/configuration.nix
+            ./global/apps/firefox.nix
+            ./global/system-packages.nix
+            ./computers/asphodel/hardware.nix
+            ./computers/asphodel/configuration.nix
           ];
         };
       };

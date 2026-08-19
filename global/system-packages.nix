@@ -1,0 +1,68 @@
+{
+  config,
+  lib,
+  pkgs,
+  pkgs-stable,
+  ...
+}:
+
+{
+   environment.systemPackages = with pkgs; [
+    lact
+    alacritty
+    niri
+    ddcutil
+    fzf
+    jdk
+    iw
+    btop-rocm
+    wiremix
+    playerctl
+    sptlrx
+    fum
+    bluetui
+    wl-clipboard
+    xwayland-satellite
+    noctalia-shell
+    quickshell
+    swayidle
+    swaylock
+    starship
+    qpwgraph
+    bluez
+    bankstown-lv2
+    cachix
+    chezmoi
+    curl
+    emacs-gtk
+    emmet-language-server
+    fd
+    fastfetch
+    firefoxpwa
+    fossil
+    helix
+    libreoffice-qt6-fresh
+    marksman
+    mpls
+    nil
+    nixfmt
+    openssl
+    pandoc
+    python3
+    rclone
+    ripgrep
+    rustup
+    uv
+    shellcheck
+    tldr
+    typescript-language-server
+    vim
+    vscode-langservers-extracted
+    wget
+    wezterm
+    ueberzug
+    yazi
+    zsh
+    zoxide
+  ];
+}
