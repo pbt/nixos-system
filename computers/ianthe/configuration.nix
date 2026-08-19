@@ -9,7 +9,7 @@
   
   system.autoUpgrade = {
     enable = true;
-    flake = "/home/pb/@r/src.pompom.sh/pb/nixos-system/#asphodel";
+    flake = "/home/pb/@r/src.pompom.sh/pb/nixos-system/#ianthe";
     flags = [
       "-L" # print build logs
       "--commit-lock-file"
@@ -17,6 +17,8 @@
     dates = "02:00";
     randomizedDelaySec = "45min";
   };
+
+  services.thermald.enable = true;
 
 
   # Bootloader.

@@ -267,16 +267,6 @@
     enable = true;
   };
 
-  system.autoUpgrade = {
-    enable = true;
-    flake = "/etc/nixos#asphodel";
-    flags = [
-      "-L" # print build logs
-      "--commit-lock-file"
-    ];
-    dates = "02:00";
-    randomizedDelaySec = "45min";
-  };
 
   # pb: power mgmt
   services.power-profiles-daemon.enable = true;
@@ -414,7 +404,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  networking.hostName = "asphodel"; # Define your hostname.
   # wifi
   services.gnome.gnome-keyring.enable = true;
   # networking.wireless.iwd.enable = true;

@@ -33,9 +33,9 @@
   hardware.graphics.enable32Bit = true;
   hardware.amdgpu.opencl.enable = true;
 
-  system.autoUpgrade = {
+ system.autoUpgrade = {
     enable = true;
-    flake = "/etc/nixos#asphodel";
+    flake = "/home/pb/@r/src.pompom.sh/pb/nixos-system/#asphodel";
     flags = [
       "-L" # print build logs
       "--commit-lock-file"
