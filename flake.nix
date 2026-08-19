@@ -38,7 +38,7 @@
           modules = [
             ({ pkgs, ... }: {
               nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
-              boot.kernelPackages = pkgs.linuxPackages_latest;
+              boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
             })
             ./global/configuration.nix
             ./global/apps/firefox.nix
