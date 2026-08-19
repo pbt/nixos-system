@@ -11,6 +11,10 @@
 }:
 
 {
+  # autologin
+  services.displayManager.autoLogin.enable = true;
+  services.displayManager.autoLogin.user = "pb";
+  
   # lix
   nix.package = pkgs.lixPackageSets.stable.lix;
 
@@ -113,6 +117,8 @@
       "rd.udev.log_level=3"
       "rd.systemd.show_status=auto"
     ];
+
+    loader.timeout = 0;
   };
 
   nix.optimise.automatic = true;
