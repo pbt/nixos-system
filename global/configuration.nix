@@ -14,7 +14,10 @@
   # autologin
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "pb";
-  
+
+  # fwupd
+  services.fwupd.enable = true;
+
   # lix
   nix.package = pkgs.lixPackageSets.stable.lix;
 

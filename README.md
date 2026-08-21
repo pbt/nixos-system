@@ -20,9 +20,10 @@ i have machines other than this but none of them run nixos.
 ## structure
 what structure?
 
-so full disclosure—i am very new to nix. i intend to learn it the old fashioned way. 
+so full disclosure—i am very new to nix. i intend to learn it the old fashioned way. this means handcoded kludge so avert your eyes if you don't know what that means anymore!
 
-## desktop
+## what i run on this
+### desktop
 generally i try to keep desktops uniform. these days i use:
 
 - [niri](https://github.com/niri-wm/niri): the best wayland compositor there is!
