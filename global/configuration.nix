@@ -111,6 +111,7 @@
   boot = {
     plymouth = {
       enable = true;
+      font = "${pkgs.atkinson-hyperlegible-next}/share/fonts/truetype/AtkinsonHyperlegibleNext-Regular.ttf";
     };
 
     consoleLogLevel = 3;
@@ -276,6 +277,11 @@
   # pb: fprintd
   services.fprintd = {
     enable = true;
+
+    tod = {
+      enable = true;
+      driver = pkgs.libfprint-2-tod1-goodix;
+    };
   };
 
   security.pam.services.polkit-1.fprintAuth = true;
@@ -570,6 +576,7 @@
     package = pkgs-stable.openssh;
     openFirewall = true;
     settings = {
+      AllowAgentForwarding = true;
       PasswordAuthentication = false;
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
