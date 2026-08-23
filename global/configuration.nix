@@ -176,12 +176,6 @@
 
   hardware.graphics.enable = true;
   hardware.graphics.enable32Bit = true;
-  # nixpkgs.config.rocmSupport = true;
-
-  # hardware.opengl.extraPackages = with pkgs; [
-  #   # rocm-opencl-icd
-  #   rocm-runtime-ext
-  # ];
 
   # pb: Enable experimental features
   nix.settings.experimental-features = [
