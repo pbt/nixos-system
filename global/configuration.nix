@@ -279,6 +279,7 @@
   };
 
   security.pam.services.polkit-1.fprintAuth = true;
+  security.pam.services.login.fprintAuth = true;
 
   services.gnome.gnome-keyring.enable = true;
 
