@@ -115,7 +115,13 @@
     };
 
     consoleLogLevel = 3;
-    initrd.verbose = false;
+
+    initrd = {
+      verbose = false;
+      systemd = {
+        enable = true;
+      };
+    };
     kernelParams = [
       "quiet"
       "rd.udev.log_level=3"
@@ -279,7 +285,11 @@
   };
 
   security.pam.services.polkit-1.fprintAuth = true;
-  security.pam.services.login.fprintAuth = true;
+
+  # it seems like gdm password auth is busted right now if fingeprint
+  # auth is on, which is why this value is set to False. good thing
+  # i autologin! so i've forced it to True.
+  security.pam.services.login.fprintAuth = lib.mkForce true;
 
   services.gnome.gnome-keyring.enable = true;
 
