@@ -277,11 +277,6 @@
   # pb: fprintd
   services.fprintd = {
     enable = true;
-
-    tod = {
-      enable = true;
-      driver = pkgs.libfprint-2-tod1-goodix;
-    };
   };
 
   security.pam.services.polkit-1.fprintAuth = true;
