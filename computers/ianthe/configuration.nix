@@ -7,7 +7,7 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = "/home/pb/@r/src.pompom.sh/pb/nixos-system/#ianthe";
+    flake = "github:pbt/nixos-system#ianthe";
     flags = [
       "-L" # print build logs
       "--commit-lock-file"

@@ -35,7 +35,7 @@
 
   system.autoUpgrade = {
     enable = true;
-    flake = "/home/pb/@r/src.pompom.sh/pb/nixos-system/#asphodel";
+    flake = "github:pbt/nixos-system#asphodel";
     flags = [
       "-L" # print build logs
       "--commit-lock-file"
