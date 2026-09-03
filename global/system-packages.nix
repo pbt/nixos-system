@@ -19,6 +19,7 @@
     wiremix
     playerctl
     sptlrx
+    polkit_gnome
     fum
     bluetui
     wl-clipboard
