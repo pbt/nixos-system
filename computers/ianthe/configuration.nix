@@ -1,9 +1,15 @@
 { config, pkgs, ... }:
 
 {
-
+  networking.wireless.enable = false;
   networking.wireless.iwd.enable = true;
   networking.networkmanager.wifi.backend = "iwd";
+
+  # fix for psr
+  boot.kernelParams = [
+    "xe.enable_psr=0"
+    "xe.enable_panel_replay=0"
+  ];
 
   system.autoUpgrade = {
     enable = true;
