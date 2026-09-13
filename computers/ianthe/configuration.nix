@@ -1,10 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  networking.wireless.enable = false;
-  networking.wireless.iwd.enable = true;
-  networking.networkmanager.wifi.backend = "iwd";
-
   # fix for psr
   boot.kernelParams = [
     "xe.enable_psr=0"
