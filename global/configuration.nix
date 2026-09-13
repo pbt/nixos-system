@@ -230,6 +230,8 @@
     ];
     shell = pkgs.nushell;
     packages = with pkgs; [
+      bitwarden-desktop
+      bitwarden-cli
       figma-agent
       aseprite
       browsh

@@ -6,7 +6,7 @@
 
     noctalia.url = "github:noctalia-dev/noctalia";
 
-    nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
+    chaotic.url = "github:chaotic-cx/nyx/nyxpkgs-unstable";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -23,7 +23,7 @@
       nixpkgs,
       nixpkgs-stable,
       nixos-hardware,
-      nix-cachyos-kernel,
+      chaotic,
     }:
     {
       nixosConfigurations = {
@@ -41,7 +41,6 @@
             };
           modules = [
             ({ pkgs, ... }: {
-              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
               boot.kernelPackages = pkgs.linuxPackages_latest;
             })
             ./global/configuration.nix
@@ -49,6 +48,7 @@
             ./global/system-packages.nix
             ./computers/ianthe/hardware.nix
             ./computers/ianthe/configuration.nix
+            chaotic.nixosModules.default
           ];
         };
         asphodel = nixpkgs.lib.nixosSystem {
@@ -65,8 +65,7 @@
             };
           modules = [
             ({ pkgs, ... }: {
-              nixpkgs.overlays = [ nix-cachyos-kernel.overlays.pinned ];
-              boot.kernelPackages = pkgs.linuxPackages_7_1;
+              boot.kernelPackages = pkgs.linuxPackages_cachyos;
               # boot.kernelPackages = pkgs.cachyosKernels.linuxPackages-cachyos-latest;
             })
             ./global/configuration.nix
@@ -74,6 +73,7 @@
             ./global/system-packages.nix
             ./computers/asphodel/hardware.nix
             ./computers/asphodel/configuration.nix
+            chaotic.nixosModules.default
           ];
         };
       };
