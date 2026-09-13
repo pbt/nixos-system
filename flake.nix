@@ -4,6 +4,8 @@
 
   inputs = {
 
+    noctalia.url = "github:noctalia-dev/noctalia";
+
     nix-cachyos-kernel.url = "github:xddxdd/nix-cachyos-kernel/release";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -15,8 +17,9 @@
   };
 
   outputs =
-    {
+    inputs@{
       self,
+      noctalia,
       nixpkgs,
       nixpkgs-stable,
       nixos-hardware,
@@ -30,6 +33,7 @@
               system = "x86_64-linux";
             in
             {
+              inherit inputs;
               pkgs-stable = import nixpkgs-stable {
                 inherit system;
                 config.allowUnfree = true;
@@ -53,6 +57,7 @@
               system = "x86_64-linux";
             in
             {
+              inherit inputs;
               pkgs-stable = import nixpkgs-stable {
                 inherit system;
                 config.allowUnfree = true;

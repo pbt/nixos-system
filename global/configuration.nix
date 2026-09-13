@@ -11,6 +11,7 @@
 }:
 
 {
+  services.upower.enable = true;
   # autologin
   services.displayManager.autoLogin.enable = true;
   services.displayManager.autoLogin.user = "pb";
@@ -25,11 +26,13 @@
     "https://nix-community.cachix.org"
     "https://attic.xuyh0120.win/lantian"
     "https://cache.nixos.org/"
+    "https://noctalia.cachix.org"
   ];
 
   nix.settings.trusted-users = [ "pb" ];
 
   nix.settings.trusted-public-keys = [
+    "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
     "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
   ];

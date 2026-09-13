@@ -2,12 +2,14 @@
   config,
   lib,
   pkgs,
+  inputs,
   pkgs-stable,
   ...
 }:
 
 {
-   environment.systemPackages = with pkgs; [
+  environment.systemPackages = with pkgs; [
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
     lact
     alacritty
     niri
