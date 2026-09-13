@@ -17,6 +17,7 @@
     fzf
     jdk
     iw
+    gnumake
     btop-rocm
     wiremix
     playerctl
