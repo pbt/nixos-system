@@ -24,7 +24,6 @@
 
   nix.settings.substituters = [
     "https://nix-community.cachix.org"
-    "https://attic.xuyh0120.win/lantian"
     "https://cache.nixos.org/"
     "https://noctalia.cachix.org"
   ];
@@ -34,7 +33,7 @@
   nix.settings.trusted-public-keys = [
     "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
     "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-    "lantian:EeAUQ+W+6r7EtwnmYjeVwx5kOGEBpjlBfPlzGlTNvHc="
+    "lantian:eeauq+w+6r7etwnmyjevwx5kogebpjlbfplzgltnvhc="
   ];
 
   fileSystems = {
@@ -586,7 +585,7 @@
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
       AllowUsers = [ "pb" ];
-      MaxAuthTries = 3;
+      MaxAuthTries = 6;
       PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
     };
   };
