@@ -14,6 +14,7 @@
     alacritty
     niri
     ddcutil
+    distrobox
     fzf
     jdk
     iw

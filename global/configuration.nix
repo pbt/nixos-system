@@ -141,8 +141,6 @@
   # pb: direnv
   programs.direnv.enable = true;
 
-  virtualisation.docker.enable = true;
-
   # pb: tailscale
   services.tailscale.enable = true;
 
@@ -447,6 +445,7 @@
     enable = true;
     # Create the default bridge network for podman
     defaultNetwork.settings.dns_enabled = true;
+    dockerCompat = true;
   };
 
   # Set your time zone.
