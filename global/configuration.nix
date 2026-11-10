@@ -118,12 +118,6 @@
 
     consoleLogLevel = 3;
 
-    initrd = {
-      verbose = false;
-      systemd = {
-        enable = true;
-      };
-    };
     kernelParams = [
       "quiet"
       "rd.udev.log_level=3"
@@ -229,7 +223,7 @@
     packages = with pkgs; [
       bitwarden-desktop
       bitwarden-cli
-      figma-agent
+      # figma-agent
       aseprite
       browsh
       (pkgs.lutris.override {
@@ -546,7 +540,7 @@
   hardware.enableAllFirmware = true;
 
   nixpkgs.config.permittedInsecurePackages = [
-    "olm-3.2.16"
+    "firefox-esr-140-bin-unwrapped-140.17.0esr" # zotero
   ];
 
   programs.ssh = {
@@ -588,4 +582,7 @@
       PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
     };
   };
+
+  programs.starship.enable = true;
+
 }

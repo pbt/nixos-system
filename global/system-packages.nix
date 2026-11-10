@@ -28,7 +28,6 @@
     bluetui
     wl-clipboard
     xwayland-satellite
-    noctalia-shell
     quickshell
     swayidle
     swaylock
