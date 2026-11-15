@@ -45,7 +45,7 @@
     firefoxpwa
     fossil
     helix
-    libreoffice-qt6-fresh
+    libreoffice
     marksman
     mpls
     nil
