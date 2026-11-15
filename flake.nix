@@ -24,6 +24,7 @@
   outputs =
     inputs@{
       self,
+      zen-browser,
       noctalia,
       nixpkgs,
       nixpkgs-stable,
