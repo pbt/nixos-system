@@ -578,7 +578,7 @@
       KbdInteractiveAuthentication = false;
       PermitRootLogin = "no";
       AllowUsers = [ "pb" ];
-      MaxAuthTries = 6;
+      MaxAuthTries = 20;
       PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
     };
   };
